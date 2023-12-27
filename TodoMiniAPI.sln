@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoMiniAPI.Data", "TodoMin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoMiniAPI.API", "TodoMiniAPI.API\TodoMiniAPI.API.csproj", "{38AE1EDF-104C-4FEA-AB59-6B1132113145}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoMiniAPI.Common.API", "TodoMiniAPI.Common.API\TodoMiniAPI.Common.API.csproj", "{A76F96B8-AD43-4A4B-92FE-B1673EB88EB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{38AE1EDF-104C-4FEA-AB59-6B1132113145}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38AE1EDF-104C-4FEA-AB59-6B1132113145}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38AE1EDF-104C-4FEA-AB59-6B1132113145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76F96B8-AD43-4A4B-92FE-B1673EB88EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76F96B8-AD43-4A4B-92FE-B1673EB88EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76F96B8-AD43-4A4B-92FE-B1673EB88EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76F96B8-AD43-4A4B-92FE-B1673EB88EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

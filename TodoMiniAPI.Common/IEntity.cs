@@ -1,4 +1,4 @@
-namespace TodoMiniAPI.Data.Entities;
+namespace TodoMiniAPI.Common;
 
 public interface IEntity
 {

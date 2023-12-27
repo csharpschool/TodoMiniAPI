@@ -1,11 +1,14 @@
-namespace TodoMiniAPI.Data.Services;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
-public class DbService
+namespace TodoMiniAPI.Common;
+
+public class DbServiceBase<T> where T : DbContext 
 {
-    private readonly TodoContext _db;
-    private readonly IMapper _mapper;
+    protected readonly T _db;
+    private protected readonly IMapper _mapper;
 
-    public DbService(TodoContext db, IMapper mapper) => (_db, _mapper) = (db, mapper);
+    public DbServiceBase(T db, IMapper mapper)  => (_db, _mapper) = (db, mapper);
 
     public async Task<TDto> SingleAsync<TEntity, TDto>(int id) where TEntity : class, IEntity where TDto : class
     {
@@ -44,11 +47,11 @@ public class DbService
 
         return true;
     }
-    public async Task<bool> DeleteTodoTagAsync(int todoId, int tagId)
+    public bool Delete<TEntity, TDto>(TDto dto) where TEntity : class where TDto : class
     {
-        try 
+        try
         {
-            var entity = await _db.Set<TodoTag>().SingleOrDefaultAsync(e => e.TodoId == todoId && e.TagId == tagId);
+            var entity = _mapper.Map<TEntity>(dto);
             if (entity is null) return false;
             _db.Remove(entity);
         }
@@ -56,6 +59,7 @@ public class DbService
 
         return true;
     }
+
     public async Task<bool> SaveChangesAsync() => await _db.SaveChangesAsync() >= 0;
     public void IncludeNavigations<TEntity>() where TEntity : class
     {

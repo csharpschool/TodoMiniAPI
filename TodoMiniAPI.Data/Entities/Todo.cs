@@ -1,3 +1,5 @@
+using TodoMiniAPI.Common;
+
 namespace TodoMiniAPI.Data.Entities;
 
 public class Todo : IEntity

@@ -1,3 +1,6 @@
+using TodoMiniAPI.Common;
+using TodoMiniAPI.Common.DTOs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -74,7 +77,7 @@ void ConfigureAutoMapper(IServiceCollection services)
         cfg.CreateMap<Tag, TagPutDTO>().ReverseMap();
         cfg.CreateMap<Tag, TagGetDTO>().ReverseMap();
         cfg.CreateMap<TodoTag, TodoTagPostDTO>().ReverseMap();
-        cfg.CreateMap<TodoTag, TodoTagPutDTO>().ReverseMap();
+        cfg.CreateMap<TodoTag, TodoTagDeleteDTO>().ReverseMap();
     });
     var mapper = config.CreateMapper();
     services.AddSingleton(mapper);
@@ -82,23 +85,15 @@ void ConfigureAutoMapper(IServiceCollection services)
 
 void RegisterServices(IServiceCollection services)
 {
-    services.AddScoped<DbService>();
-    services.AddTransient<IEndpoint, StatusEndpoint>();
-    services.AddTransient<IEndpoint, TagEndpoint>();
-    services.AddTransient<IEndpoint, TodoEndpoint>();
-    services.AddTransient<IEndpoint, TodoTagEndpoint>();
+    services.AddScoped<DbServiceBase<TodoContext>>();
 }
 
 void RegisterEndpoints(WebApplication app)
 {
-    var endpoints = app.Services.GetServices<IEndpoint>();
-
-    foreach (var endpoint in endpoints)
-    {
-        if (endpoint is null) throw new InvalidProgramException("Couldn't register API.");
-
-        endpoint.Register(app);
-    }
+    app.AddEndpoint<TodoContext, Status, StatusPostDTO, StatusPutDTO, StatusGetDTO>();
+    app.AddEndpoint<TodoContext, Tag, TagPostDTO, TagPutDTO, TagGetDTO>();
+    app.AddEndpoint<TodoContext, Todo, TodoPostDTO, TodoPutDTO, TodoGetDTO>();
+    app.AddEndpoint<TodoContext, TodoTag, TodoTagPostDTO, TodoTagDeleteDTO>();
 }
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

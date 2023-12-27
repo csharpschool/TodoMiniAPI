@@ -3,7 +3,3 @@ global using Microsoft.EntityFrameworkCore;
 global using TodoMiniAPI.Data.Contexts;
 global using TodoMiniAPI.Data.Entities;
 global using TodoMiniAPI.Common.DTOs;
-global using TodoMiniAPI.Data.Services;
-global using TodoMiniAPI.API.Interfaces;
-global using TodoMiniAPI.API.Extensions;
-global using TodoMiniAPI.API.Endpoints;
